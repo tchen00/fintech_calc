@@ -74,9 +74,46 @@ def intro(x):
     print(chr(27) + "[2J")
     if x == 0:
         print(Fore.GREEN + Back.WHITE + "Welcome to the Calculator!" +  Style.RESET_ALL)
-        print("\nHere is the Main Menu: \n\t1. Math Calculator\n\t2. Tax Calculator\n\t3. Average Calculator  ")
+        print("\nHere is the Main Menu: \n\t1. Math Calculator\n\t2. Tax Calculator\n\t3. Average Calculator\n\t4. PEMDAS Calculator  ")
     if x == 1: 
-        print(Fore.GREEN + Back.WHITE + 'Welcome back to the Calculator!\n'  + Style.RESET_ALL + '\nHere is the main menu: \n\t1. Math Calculator\n\t2. Tax Calculator\n\t3. Average Calculator  ')
+        print(Fore.GREEN + Back.WHITE + 'Welcome back to the Calculator!\n'  + Style.RESET_ALL + '\nHere is the main menu: \n\t1. Math Calculator\n\t2. Tax Calculator\n\t3. Average Calculator\n\t4. PEMDAS Calculator  ')
+
+def pemdasCalc():
+    print(Fore.RED + Back.WHITE + 'Welcome to the PEMDAS Calculator\n' +  Style.RESET_ALL )
+    expression = input("Math Expression (put a space between everything) : ")
+    numbers = []
+    operator = []
+    expresslist = expression.split(" ")
+    operators = ["+","-","*","/"]
+    fast = ["*","/"]
+    slow = ["+","-"]
+    i = 0
+    while i < len(expresslist):
+        if not expresslist[i] in operators:
+            numbers.append(float(expresslist[i]))
+        if expresslist[i] in operators:
+            operator.append(expresslist[i])
+        elif len(operator) > 0:
+            if operator[-1] in fast:
+                if operator[-1] == "*":
+                    numbers.append(float(numbers.pop(-1)) * numbers.pop(-1))
+                if operator[-1] == "/":
+                    a = numbers.pop(-1)
+                    b = numbers.pop(-1)
+                    numbers.append(float(b / a))
+                operator.pop(-1)
+        i += 1
+   # print(operator)
+   # print(numbers)
+    while len(operator) > 0:
+        a = numbers.pop(-1)
+        b = numbers.pop(-1)
+        operation = operator.pop(-1)
+        if  operation == "+":
+            numbers.append(a + b)
+        if operation == "-":
+            numbers.append(b - a)
+    print(numbers[0])
 
 def main():
     global firstTime
@@ -93,6 +130,8 @@ def main():
         taxCalc()
     if option == "3": 
         averageCalc()
+    if option == "4": 
+        pemdasCalc()
     if option == "exit": 
         exit()
     else: 

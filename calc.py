@@ -2,6 +2,7 @@ import time
 from colorama import Fore, Back, Style
 firstTime = True
 
+# main menu loop 
 def loop():
     time.sleep(1.5)
     print(chr(27) + "[2J")
@@ -18,6 +19,7 @@ def loop():
     else: 
         loop()
 
+# basic math operations calculator 
 def mathCalc(): 
     time.sleep(1)
     print(chr(27) + "[2J")
@@ -44,6 +46,7 @@ def mathCalc():
         print(Fore.RED + Back.WHITE + "Answer:" +  Style.RESET_ALL  + " " + str(number1 ** number2))
     loop()
 
+# tax calculator
 def taxCalc():
     time.sleep(1)
     print(chr(27) + "[2J")
@@ -56,6 +59,7 @@ def taxCalc():
     time.sleep(1.5)
     loop()
 
+# average calculator
 def averageCalc(): 
     time.sleep(1)
     print(chr(27) + "[2J")
@@ -68,6 +72,7 @@ def averageCalc():
     print("The sum of all your values is "+ str(sum) + ". The calculated average is " + Fore.RED + Back.WHITE + str(sum/num) + Style.RESET_ALL  + ".")
     loop()
 
+# main menu  
 def intro(x):
     print("--------------------------------------------------------------------------")
     time.sleep(1.5)
@@ -78,6 +83,7 @@ def intro(x):
     if x == 1: 
         print(Fore.GREEN + Back.WHITE + 'Welcome back to the Calculator!\n'  + Style.RESET_ALL + '\nHere is the main menu: \n\t1. Math Calculator\n\t2. Tax Calculator\n\t3. Average Calculator\n\t4. PEMDAS Calculator  ')
 
+# shunting yard algo for PEMDAS
 def pemdasCalc():
     print(Fore.RED + Back.WHITE + 'Welcome to the PEMDAS Calculator\n' +  Style.RESET_ALL )
     expression = input("Math Expression (put a space between everything) : ")
@@ -103,8 +109,6 @@ def pemdasCalc():
                     numbers.append(float(b / a))
                 operator.pop(-1)
         i += 1
-   # print(operator)
-   # print(numbers)
     while len(operator) > 0:
         a = numbers.pop(-1)
         b = numbers.pop(-1)
@@ -115,6 +119,7 @@ def pemdasCalc():
             numbers.append(b - a)
     print(numbers[0])
 
+# main func to run calculator 
 def main():
     global firstTime
     if firstTime: 

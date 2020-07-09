@@ -1,0 +1,2 @@
+def yay()
+    return("yay")

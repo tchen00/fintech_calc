@@ -53,6 +53,7 @@ def taxCalc():
     number2 = float(input("What is the tax percentage? "))
     print(Fore.RED + Back.WHITE + "\nRESULTS:" + Style.RESET_ALL + "\nThe tax is: $" + str(round(100*(number1 * number2 * .01))/100))
     print("The final bill is $" + str(round(100*(number1 * number2 * .01 + number1))/100))
+    time.sleep(1.5)
     loop()
 
 def averageCalc(): 
